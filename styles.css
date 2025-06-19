@@ -1,0 +1,412 @@
+/* Base Styles */
+:root {
+  --black: #000000;
+  --dark-gray: #292c2e;
+  --light-gray: #a6a7a7;
+  --white: #ffffff;
+  --yellow: #ffe210;
+  --yellow-hover: #ffdd11;
+  --light-bg: #fafbfb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--white);
+  background-color: var(--black);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-yellow {
+  background-color: var(--yellow);
+  color: var(--black);
+}
+
+.btn-yellow:hover {
+  background-color: var(--yellow-hover);
+}
+
+.btn-dark {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.btn-dark:hover {
+  background-color: var(--dark-gray);
+}
+
+.btn-lg {
+  padding: 0.875rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* Header Styles */
+.header {
+  background-color: var(--black);
+  padding: 1rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--white);
+  border-radius: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-inner {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: var(--black);
+  border-radius: 0.125rem;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--light-gray);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--white);
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 600px;
+  background-color: var(--dark-gray);
+  overflow: hidden;
+}
+
+.hero-overlay img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+/* About Section */
+.about {
+  padding: 4rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header.left {
+  text-align: left;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.section-title.dark {
+  color: var(--black);
+}
+
+.section-description {
+  color: var(--light-gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-description.dark {
+  color: var(--dark-gray);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.service-card {
+  background-color: var(--dark-gray);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.service-icon {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--dark-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.icon-inner {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--white);
+  border-radius: 50%;
+}
+
+.service-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.service-description {
+  color: var(--light-gray);
+  font-size: 0.875rem;
+}
+
+/* Find Terrain Section */
+.find-terrain {
+  padding: 4rem 0;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .two-column {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.terrain-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Admin Space Section */
+.admin-space {
+  background-color: var(--light-bg);
+  padding: 4rem 0;
+}
+
+.yellow-square {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--yellow);
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Our Terrains Section */
+.our-terrains {
+  padding: 4rem 0;
+}
+
+.terrains-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .terrains-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .terrains-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.terrain-card {
+  background-color: var(--dark-gray);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.terrain-image-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.terrain-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.terrain-card-content {
+  padding: 1.5rem;
+}
+
+.terrain-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.terrain-card-description {
+  color: var(--light-gray);
+  font-size: 0.875rem;
+}
+/* Footer */
+.footer {
+  background-color: #212428;
+  color: white;
+  padding: 3rem 0;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.footer-column h4 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: #a6a6a6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: white;
+}
+
+.logo {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-column p {
+  color: #a6a6a6;
+  font-size: 0.9rem;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
