@@ -2,7 +2,7 @@
 session_start();
 include "../../config/config.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../../auth/formulaireconnexion.php");
     exit;
 }
@@ -60,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($error)) {
         try {
-            $stmt = $pdo->prepare("UPDATE terrains SET terrain_name = ?, category = ?, location = ?, description = ?,  image = ? WHERE terrain_id = ?");
-            $stmt->execute([$terrain_name, $category, $location, $description,  $image_path, $terrain_id]);
+            $stmt = $pdo->prepare("UPDATE terrains SET terrain_name = ?, category = ?, location = ?, description = ?, image = ? WHERE terrain_id = ?");
+            $stmt->execute([$terrain_name, $category, $location, $description, $image_path, $terrain_id]);
             
             $message = "Terrain modifié avec succès !";
             
@@ -216,8 +216,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" rows="4"><?php echo htmlspecialchars($terrain['description']); ?></textarea>
                                     </div>
-                                    
-                                  
                                     
                                     <div class="form-group">
                                         <label for="image">Image du terrain</label>

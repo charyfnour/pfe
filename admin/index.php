@@ -3,7 +3,7 @@ session_start();
 include "../config/config.php";
 
 // Vérifier si l'utilisateur est connecté et est admin
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../auth/formulaireconnexion.php");
     exit;
 }
@@ -44,6 +44,9 @@ $stmt = $pdo->query("
     LIMIT 5
 ");
 $popular_terrains = $stmt->fetchAll();
+
+// Récupérer le nom de l'admin connecté
+$admin_name = $_SESSION['name'] ?? 'Admin';
 ?>
 
 <!DOCTYPE html>
@@ -110,7 +113,7 @@ $popular_terrains = $stmt->fetchAll();
                     <div class="user-menu">
                         <button class="user-btn">
                             <i class="fas fa-user-circle"></i>
-                            <span>Admin</span>
+                            <span><?php echo htmlspecialchars($admin_name); ?></span>
                         </button>
                         <div class="user-dropdown">
                             <a href="../auth/logout.php" class="dropdown-item">

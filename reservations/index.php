@@ -3,7 +3,7 @@ session_start();
 include "../config/config.php";
 
 // Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
     header("Location: ../auth/formulaireconnexion.php");
     exit;
 }

@@ -2,7 +2,7 @@
 session_start();
 include "../../config/config.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../../auth/formulaireconnexion.php");
     exit;
 }
@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($error)) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO terrains (terrain_name, category, location, description,  image) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$terrain_name, $category, $location, $description,  $image_path]);
+            $stmt = $pdo->prepare("INSERT INTO terrains (terrain_name, category, location, description, image) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$terrain_name, $category, $location, $description, $image_path]);
             
             $message = "Terrain ajouté avec succès !";
         } catch (PDOException $e) {
@@ -192,11 +192,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" rows="4"></textarea>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="price_per_hour">Prix par heure (€)</label>
-                                        <input type="number" class="form-control" id="price_per_hour" name="price_per_hour" step="0.01" min="0" required>
                                     </div>
                                     
                                     <div class="form-group">

@@ -41,9 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
         $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($admin && password_verify($password, $admin["password"])) {
+            $_SESSION["user_id"] = $admin["admin_id"]; // Utiliser user_id pour la cohérence
             $_SESSION["admin_id"] = $admin["admin_id"];
             $_SESSION["role"] = "admin";
-            header("Location: ../admin/dashboard.php");
+            $_SESSION["email"] = $admin["email"];
+            $_SESSION["name"] = $admin["name"] ?? "Admin";
+            header("Location: ../admin/index.php"); // Redirection vers le dashboard admin
             exit;
         }
 
@@ -55,7 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
         if ($user && password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["user_id"];
             $_SESSION["role"] = "user";
-            header("Location: ../index.html");
+            $_SESSION["email"] = $user["email"];
+            $_SESSION["first_name"] = $user["first_name"];
+            $_SESSION["last_name"] = $user["last_name"];
+            header("Location: ../index.html"); // Redirection vers la page d'accueil utilisateur
             exit;
         }
 
@@ -103,4 +109,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
 </body>
 
 </html>
-
